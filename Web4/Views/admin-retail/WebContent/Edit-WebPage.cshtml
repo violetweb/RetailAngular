@@ -1,0 +1,27 @@
+﻿<div ng-controller="WebPageDetailController" class="panel panel-default">
+    <h3 class="text-gray">
+        Edit<br />
+        <small class="text-muted">Lens.care content editor.</small>
+    </h3>
+    <div class="form-group">
+        <div class="controls">
+            <a ng-click="toggleLang(E)" class="btn btn-small btn-purple" ng-show="layoutOptions.lang=='E'">ENGLISH</a>
+            <a ng-click="toggleLang(F)" class="btn btn-small btn-purple" ng-show="layoutOptions.lang=='F'">FRENCH</a>
+        </div>
+    </div>
+    <br />
+    <form novalidate="novalidate" class="form-horizontal" role="form" ng-show="layoutOptions.lang=='E'">
+        <input type="text" class="form-control" placeholder="Title" ng-model="webpage.Page_Name" /><br/>             
+        <input type="text" class="form-control" ng-model="webpage.Link_Location"/><br/>
+        
+        <div class="form-group">
+            <div class="controls">
+                <a ng-click="cancel()" class="btn btn-small">cancel</a>
+                <a ng-show="layoutOptions.isCreate == false" ng-click="updateInfo()" class="btn btn-small btn-purple">Update Info</a>
+                <a ng-show="layoutOptions.isCreate == true" ng-click="createInfo()" class="btn btn-small btn-purple">Create New</a>
+            </div>
+        </div>
+    </form>
+   
+   
+</div>

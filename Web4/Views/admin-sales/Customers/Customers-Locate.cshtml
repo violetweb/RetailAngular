@@ -1,0 +1,646 @@
+﻿@{
+    PageData["title"] = "Optik K&R : Customers";
+}
+
+<div ng-controller="CustomersController">
+    <script type="text/ng-template" id="ContactAddModal">
+        <form name="contactForm" ng-submit="submitContact(contactForm)" validate>
+            <div class="message-entry"></div>
+            <div class="modal-header"><h4 class="modal-title">Add Customer Contact</h4></div>
+            <div class="modal-body clearfix">
+                <p>Add new contact below</p>
+                <div class="col-md-12 col-sm-12 clearfix">
+                    <div class="input-group input-group-sm input-group-minimal">
+                        <span class="input-group-addon"> <i class="linecons-user"></i> </span>
+                        <input type="text" placeholder="Contact Name" ng-model="contactForm.Name" class="form-control" required />
+                    </div>
+                    <br />
+                    <div class="input-group input-group-sm input-group-minimal">
+                        <span class="input-group-addon"> <i class="linecons-graduation-cap"></i> </span>
+                        <input type="text" placeholder="Contact Title" ng-model="contactForm.Title" class="form-control" />
+                    </div>
+                    <br />
+                    <div class="input-group input-group-sm input-group-minimal">
+                        <span class="input-group-addon"> <i class="linecons-mobile"></i> </span>
+                        <input type="text" placeholder="Contact Phone" ng-model="contactForm.Phone" class="form-control" />
+                    </div>
+                    <br />
+                    <div class="input-group input-group-sm input-group-minimal">
+                        <span class="input-group-addon"> <i class="linecons-doc"></i> </span>
+                        <input type="text" placeholder="Contact Fax" ng-model="contactForm.Fax" class="form-control" />
+                    </div>
+                    <br />
+                    <div class="input-group input-group-sm input-group-minimal">
+                        <span class="input-group-addon"> <i class="linecons-mobile"></i> </span>
+                        <input type="text" placeholder="Contact Cell" ng-model="contactForm.Pager" class="form-control" />
+                    </div>
+                    <br />
+                    <div class="input-group input-group-sm input-group-minimal">
+                        <span class="input-group-addon"> <i class="linecons-mail"></i> </span>
+                        <input type="text" placeholder="Contact Email" ng-model="contactForm.Email" class="form-control" />
+                    </div>
+                    <br />
+                </div>
+                <div class="modal-footer clearfix">
+                    <button class="btn btn-primary" type="submit">SAVE</button>
+                    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+                </div>
+
+            </div>
+        </form>
+    </script>
+    <div class="panel panel-default">
+
+
+
+        <div class="panel-heading">
+            Lookup Customer Information
+
+        </div>
+        <form ng-submit="submitQuery(search)">
+            <div class="panel-body">
+
+                <div class="col-sm-5">
+                    Search By:
+                    <div class="form-block">
+
+                        <label class="col-sm-3">
+                            <input tabindex="0" type="radio" ng-model="SearchBy" class="cbr cbr-done" value="CustomerID" name="rdoSearch">Customer ID
+
+                        </label>
+
+                        <label class="col-sm-3">
+                            <input tabindex="1" type="radio" ng-model="SearchBy" class="cbr cbr-done" value="CustomerName" name="rdoSearch">Customer Name
+
+                        </label>
+                        <label class="col-sm-3">
+                            <input tabindex="2" type="radio" ng-model="SearchBy" class="cbr cbr-done" value="CustomerPhone" name="rdoSearch">Customer Phone
+
+                        </label>
+                        <label class="col-sm-3">
+                            <input tabindex="2" type="radio" ng-model="SearchBy" class="cbr cbr-done" value="CustomerGlobal" name="rdoSearch">Global Search
+
+                        </label>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-7">
+                    <div class="input-group">
+                        <input type="text" class="form-control no-right-border form-focus-purple" ng-model="search.customerid" />
+                        <span class="input-group-btn">
+                            <button type="button" tabindex="3" ng-click="submitQuery(search)" class="btn btn-purple">Submit</button>
+                        </span>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </form>
+
+
+
+    </div>
+
+
+
+
+    <div class="form-group-separator"></div>
+    <div ng-if="showCustomerID" ng-animate="easemein">
+        <section class="profile-env">
+
+            <div class="row">
+
+                <div class="col-sm-3">
+
+                    <!-- User Info Sidebar -->
+                    <div class="user-info-sidebar">
+                        <a class="user-name" href="#">Client ID. {{customer.Customer_ID}}</a>
+                        <a class="user-img" href="#">
+                            <img class="img-circle img-responsive img-thumbnail" alt="user-img" src="Content/images/user-4.png">
+                        </a>
+
+                        <a class="user-name" href="#">
+                            {{customer.Customer_Name}}
+                            <span class="user-status is-online"></span>
+
+                        </a>
+
+                        <span class="user-title">
+                            {{customer.Phone}}
+
+                        </span>
+
+                        <hr>
+
+                        <ul class="list-unstyled user-info-list">
+                            <li>
+                                <div class="col-sm-2"><i class="fa-home"></i></div>
+                                <div class="col-sm-10">
+                                    <address>
+                                        {{customer.Street1}}, {{customer.Street2}}<br />
+                                        {{customer.City}}, {{customer.Province}}  {{customer.PostalCode}}
+                                    </address>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="col-sm-2">
+                                    <i class="fa-phone"></i>
+                                </div>
+                                <div class="col-sm-10">
+                                    <address>
+                                        Phone:  <a href="tel:{{customer.Phone}}">{{customer.Phone}}</a><br />
+                                        Fax:  {{customer.Fax}}<br />
+                                        Email: <a href="mailto:{{customer.Email}}">{{customer.Email}}</a>
+                                    </address>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="col-sm-2">
+                                    <i class="fa-calendar"></i>
+                                </div>
+                                <div class="col-sm-10">
+                                    <address>Member Since : {{customer.CreationDate}}</address>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <hr>
+                        <div class="customer-data">
+
+                            <ul class="xe-widget list-unstyled user-friends-count">
+                                <li>
+                                    <div class="xe-widget xe-counter"><div class="xe-icon"> <i class="linecons-cloud">{{customer.Special_Pricing_Customer_ID}}</i> </div> </div>
+                                    <div class="text-center">Special Pricing</div>
+                                </li>
+                                <li>
+                                    <div class="xe-widget xe-counter">
+
+                                        <div class="xe-icon">
+                                            <i class="linecons-cloud">{{customer.CreditLimit}}</i>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="text-center">Credit Limit</div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <hr>
+                        <div class="row">
+                            <div class="sales-buttons">
+
+                                <div class="col-sm-3 col-sm-offset-1">
+                                    <button class="btn-purple btn btn-small" ng-click="salesSnapshot(customer.Customer_ID)"><i class="fa fa-pie-chart"></i></button>
+                                    <div class="text-center">Sales Data</div>
+
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <button class="btn-success btn btn-small" ng-click="specialPricing(customer.Customer_ID)"><i class="fa fa-money"></i></button>
+                                    <div class="text-center">Special Pricing</div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <button class="btn-orange btn btn-small" ng-click="topTenItems(customer.Customer_ID)"><i class="fa fa-heart"></i></button>
+                                    <div class="text-center">Top 10 Items</div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div data-duration="2" data-suffix="%" data-to="{{OrderReturns3}}" data-from="0" data-count=".num" class="xe-widget xe-counter xe-progress-counter-pink ">
+                                <div class="xe-icon"> <i class="fa-chain fa"></i> </div>
+                                <div class="xe-label">
+                                    <strong class="num">{{OrderReturns3}}%</strong> <span>3 Month Term Returns</span>
+                                </div>
+                            </div>
+                            <div data-duration="2" data-suffix="%" data-to="{{OrderReturns6}}" data-from="0" data-count=".num" class="xe-widget xe-counter xe-progress-counter-pink ">
+                                <div class="xe-icon"> <i class="fa-chain fa"></i> </div>
+                                <div class="xe-label">
+                                    <strong class="num">{{OrderReturns6}}%</strong> <span>6 Month Term Returns</span>
+                                </div>
+                            </div>
+                            <div data-duration="2" data-suffix="%" data-to="{{OrderReturns12}}" data-from="0" data-count=".num" class="xe-widget xe-counter xe-progress-counter-pink ">
+                                <div class="xe-icon"> <i class="fa-chain fa"></i> </div>
+                                <div class="xe-label">
+                                    <strong class="num">{{OrderReturns12}}%</strong> <span>12 Month Term Returns Percentage</span>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-sm-9">
+
+                    <!-- User Post form and Timeline -->
+                    <form novalidate="novalidate" class="profile-post-form" method="post" role="form">
+                        <div class="clearfix">
+                            <div class="col-md-5">
+                                <textarea ng-model="newnote.Note1" id="Note" tabindex="0" placeholder="Enter your notes for today." class="form-control input-unstyled input-lg autogrow" style="overflow: hidden; margin-bottom:5px; word-wrap: break-word; height: 84px;" autofocus></textarea>
+                                <div class="col-md-12">
+                                    <span>Category: </span>
+                                    <label>
+                                        <div class="cbr-input"><input tabindex="1" type="radio" ng-model="newnote.Category" value="Visit" class="cbr cbr-done" ng-init="notes.Category='Visit'">Visit</div>
+
+                                    </label>
+
+                                    <label>
+                                        <div class="cbr-input"><input tabindex="2" type="radio" ng-model="newnote.Category" value="Phone" class="cbr cbr-done">Phone</div>
+
+                                    </label>
+
+                                    <label>
+                                        <div class="cbr-input"><input tabindex="3" type="radio" ng-model="newnote.Category" value="Email" class="cbr cbr-done">Email / Text</div>
+
+                                    </label>
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon" ng-click="setDateNow()"> <i class="fa-clock-o"></i> </span>
+                                    <span class="input-group-addon" ng-click="setDatePrevious()"> <i class="fa-arrow-circle-left"></i></span>
+
+                                    <input type="text" ng-model="newnote.Date" class="form-control" />
+
+                                </div>
+                                <p><small>If you manually enter the date, please format like:  <strong>MM/DD/YYYY 24:59:00</strong></small></p>
+                                <div class="notes-header">
+                                    <button id="add-note" ng-click="submitNote(newnote)" class="btn btn-success btn-lg"><i class="fa-pencil"></i>-<span>New Note</span></button>
+                                </div>
+                            </div>
+                            <div class="col-md-3" ng-hide="calendarItemExists">
+                                <button class="btn btn-small btn-black" ng-click="followUp()"><i class="fa fa-calendar-plus-o"></i></button>
+                            </div>
+
+                            <!--
+                          <input type="text" ng-model="notes.User_ID" placeholder="userid"/>
+                          <input type="text" ng-model="notes.Customer_ID" placeholder="customer.Customer_ID"/>
+                          <input type="text" ng-model="notes.Category" placeholder="Visit"/>
+                        -->
+                        </div>
+                    </form>
+
+                    <!-- User timeline stories -->
+                    <div class="panel-default panel">
+                        <div class="panel-heading">
+                            <div class="panel-title">Customer Notes.</div>
+                            <div class="panel-options">
+                                <a data-toggle="panel" href="">
+                                    <span class="collapse-icon">&ndash;</span>
+                                    <span class="expand-icon">+</span>
+                                </a>
+                                <a data-toggle="remove" href="">
+                                    ×
+                                </a>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <section class="user-timeline-stories" ng-if="TheNotes">
+
+                                <!-- Timeline Story Type: Status -->
+                                <article class=" timeline-story" ng-repeat="note in TheNotes" ng-style="">
+
+                                    <i class="fa-paper-plane-empty block-icon"></i>
+
+                                    <!-- User info -->
+                                    <header>
+
+                                        <a class="user-img" href="#">
+                                            <img class="img-responsive img-circle" alt="user-img" src="Content/images/user-4.png">
+                                        </a>
+
+                                        <div class="user-details">
+                                            <strong>{{note.Full_Name}}</strong> posted a <strong>note</strong> via <strong>{{note.Category}}</strong> on <time>{{note.Date}}</time>
+                                        </div>
+
+                                    </header>
+
+                                    <div class="story-content row">
+                                        <!-- Story Content Wrapped inside Paragraph -->
+                                        <div class="col-xs-12 col-md-9">
+                                            <div at-textareatoggle="Note" at-model="note" at-field="Note">{{note.Note}}</div>
+                                        </div>
+
+                                    </div>
+
+                                </article>
+
+
+
+
+
+                            </section>
+                        </div>
+                    </div>
+                    <div class="panel-default panel">
+                        <div class="panel-heading">
+                            <div class="panel-title">Customer Contacts</div>
+                            <button class="btn btn-success" ng-click="addContact()">Add Contact</button>
+                            <div class="panel-options">
+                                <a data-toggle="panel" href="">
+                                    <span class="collapse-icon">&ndash;</span>
+                                    <span class="expand-icon">+</span>
+                                </a>
+                                <a data-toggle="remove" href="">
+                                    ×
+                                </a>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-striped table-bordered dataTable">
+
+                                <thead>
+                                    <tr>
+                                        <td>Name</td>
+                                        <th>Title</th>
+                                        <th>Phone</th>
+                                        <th>Fax</th>
+                                        <th>Cell</th>
+                                        <th>Email</th>
+                                    </tr>
+                                </thead>
+                                <tr ng-repeat="contact in customercontacts">
+                                    <td ng-bind="contact.Name"></td>
+                                    <td ng-bind="contact.Title"></td>
+                                    <td ng-bind="contact.Phone"></td>
+                                    <td ng-bind="contact.Fax"></td>
+                                    <td ng-bind="contact.Cell"></td>
+                                    <td ng-bind="contact.Email"></td>
+                                    <td><button class="btn btn-blue">edit</button></td>
+                                </tr>
+
+                            </table>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+    </div>
+
+   
+</div>
+
+
+
+
+
+    <script type="text/ng-template" id="Modal">
+        <div class="modal-header"><h4 class="modal-title">Something went wrong.</h4></div>
+        <div class="modal-body">
+            <p>Your request produced no results;  Please try again.</p>
+        </div>
+        <div class="modal-footer"><button type="button" class="btn btn-info" ng-click="currentModal.dismiss();">Continue</button></div>
+    </script>
+    <script type="text/ng-template" id="SuccessModal">
+        <div class="modal-header"><h4 class="modal-title">Notes</h4></div>
+        <div class="modal-body">
+            <p>Your note has been added.</p>
+        </div>
+        <div class="modal-footer"><button type="button" class="btn btn-info" ng-click="currentModal.dismiss();">Continue</button></div>
+    </script>
+    <script type="text/ng-template" id="FailureModal">
+        <div class="modal-header"><h4 class="modal-title">Notes</h4></div>
+        <div class="modal-body">
+            <p>Unable to add a record; please fill in all required fields and try again.</p>
+        </div>
+        <div class="modal-footer"><button type="button" class="btn btn-info" ng-click="currentModal.dismiss();">Continue</button></div>
+    </script>
+    <script type="text/ng-template" id="CustomerSelect">
+        <div class="modal-header"><h4 class="modal-title">Multiple Customers Results</h4></div>
+        <div class="modal-body clearfix">
+            <p>Your query produced multiple results; please select from list below:</p>
+            <table class="table table-striped table-condensed">
+
+                <tr ng-repeat="cust in customerlist">
+                    <td><a href="#" ng-click="selectedCustomer(cust)">{{ cust.Customer_ID }}</a></td>
+                    <td>{{cust.Customer_Name}}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="modal-footer"><button type="button" class="btn btn-info" ng-click="currentModal.dismiss();">Continue</button></div>
+    </script>
+
+
+    <script type="text/ng-template" id="CustomerTopTen">
+        <div class="modal-header"><h4 class="modal-title">{{customer.Customer_Name}} Top Ten Items (Last 90 Days)</h4></div>
+        <div class="modal-body clearfix">
+            <div class="col-md-5">
+            <table class="table table-striped table-condensed">
+                <thead>
+                    <tr>
+                        <th>Item Name</th>
+                        <th>Qty</th>
+                        <th>90 Day Total ($):</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in TopTenItems">
+                        <td>{{item.Item_Name}}</td>
+                        <td>{{item.Qty}}</td>
+                        <td>{{item.MonthTotal | currency}}</td>
+
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+            <div class="col-md-7">
+               
+                <div class="chart-item-env">
+                    <div id="doughnut-2" style="margin-top:80px; width:auto;"></div>
+                </div>
+            </div>
+              
+           
+        </div>
+        <div class="modal-footer"><button type="button" class="btn btn-info" ng-click="currentModal.dismiss();">close</button></div>
+    </script>
+
+    <script type="text/ng-template" id="CustomerPricing">
+        <div class="modal-header"><h4 class="modal-title">Customer Special Pricing</h4></div>
+        <div class="modal-body">
+            <table class="table table-striped table-condensed">
+                <thead>
+                    <tr>
+                        <th>Item Name - Group</th>
+                        <th><span class="xe-icon"><i class="fa fa-users"></i></span></th>                        
+                        <th><span class="xe-icon"><i class="fa fa-shopping-basket"></i></span></th>
+                        <th><span class="xe-icon"><i class="fa fa-calendar-o"></i></span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in SpecialPricing">
+                        <td>{{item.Item_Name}} - {{item.Group_ID}}</td>
+                        <td>{{item.GROUP_Pricing}}</td>
+                        <td>{{item.Web_pricing}}</td>
+                        <td><button class="btn"><i class="fa fa-calendar-o">{{item.From_Date }}</i></button><button class="btn"><i class="fa fa-calendar-o">{{item.To_Date}}</i></button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="modal-footer"><button type="button" class="btn btn-info" ng-click="currentModal.dismiss();">close</button></div>
+    </script>
+
+ <script type="text/ng-template" id="CustomerSales">
+
+       <div class="modal-body">
+                <div class="modal-header text-center"><h2 class="modal-title">{{viewingYear}}</h2><button class="btn" ng-class="{'btn-primary ': viewingYear == '2015', 'btn-danger': viewingYear == '2016'}" ng-click="toggleYear()">
+                <i ng-class="{'fa-calendar-minus-o': viewingYear == '2016', 'fa-calendar-plus-o': viewingYear == '2015'}"></i></button>
+              <!--      <button id="toggle4Up" class="btn" ng-class="{'btn-primary': displayvalue == '4', 'btn-success': displayvalue == '1'}" ng-click="toggle4Up()">
+                        <i ng-class="{'fa-circle': displayvalue == '4', 'fa-circle': displayvalue == '1'}">
+                           
+                        </i>
+                    </button> -->
+        </div>
+        <div class="row">
+        <div class="col-md-7">
+            <button class="btn btn-primary col-sm-1" ng-click="clickRight($index)" ng-show="displayvalue == '4'"><span class="fa fa-arrow-circle-left"></span></button>
+            <button class="btn btn-primary col-sm-1" ng-click="clickLeft($index)" ng-show="displayvalue == '4'"><i class="fa fa-arrow-circle-right"></i></button>
+   
+            <!--
+              <table class="table table-condensed" ng-show="viewingYear == '2016'">
+                    <tr>
+                        <td ng-swipe-right="swipeRight()" ng-swipe-left="swipeLeft()" ng-hide="!isCurrentRange($index)"
+                            ng-repeat="d in chartdata_current track by $index" class="" ng-class="{'show': isCurrentSlideIndex($index)}">
+
+                            <div class="modal-title center-block">
+                                <button class="btn btn-primary col-sm-1" ng-click="clickRight($index)" ng-hide="displayvalue == '4up'"><span class="fa fa-arrow-circle-left"></span></button>
+
+                                  <div class="col-sm-10">
+                                        <div class="col-md-8"><h4>{{d.DateTitle}}</h4></div><div class="col-md-4"><h3 class="pricing">{{d.DateTotal | currency}}</h3></div>
+                                </div>
+                                  <button class="btn btn-primary col-sm-1" ng-click="clickLeft($index)" ng-hide="displayvalue == '4up'"><i class="fa fa-arrow-circle-right"></i></button>
+
+                            </div>
+                            <table class="table table-condensed table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Qty</th>
+                                        <th>$ Amt</th>
+                                       
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in d.DateData">
+                                        <td class="col-md-5">{{item.Product_Type_Name}}</td>
+                                        <td class="col-md-1">{{item.Qty}}</td>
+                                        <td class="col-md-3">{{item.MonthTotal | currency }}</td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+
+                        </td>
+                    </tr>
+                </table>
+
+            <table class="table table-condensed" ng-show="viewingYear == '2015'">
+                <tr>
+                    <td ng-swipe-right="swipeRight()" ng-swipe-left="swipeLeft()" ng-hide="!isCurrentRange($index)"
+                        ng-repeat="d in chartdata_prior track by $index">
+
+                        <div class="modal-title center-block">
+                            <button class="btn btn-primary col-sm-1" ng-click="clickRight($index)" ng-hide="displayvalue == '4up'"><span class="fa fa-arrow-circle-left"></span></button>
+
+                            <div class="col-sm-10">
+                                <div class="col-md-8"><h4>{{d.DateTitle}}</h4></div><div class="col-md-4"><h3 class="pricing">{{d.DateTotal | currency}}</h3></div>
+                            </div>
+                            <button class="btn btn-primary col-sm-1" ng-click="clickLeft($index)" ng-hide="displayvalue == '4up'"><i class="fa fa-arrow-circle-right"></i></button>
+
+                        </div>
+                        <table class="table table-condensed table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Qty</th>
+                                    <th>$ Amt</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in d.DateData">
+                                    <td class="col-md-5">{{item.Product_Type_Name}}</td>
+                                    <td class="col-md-1">{{item.Qty}}</td>
+                                    <td class="col-md-3">{{item.MonthTotal | currency }}</td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+
+                    </td>
+                </tr>
+            </table>-->
+               <div ng-show="viewingYear == '2016'">
+                    <sales-data-swipe swipe-viewing-year="2016" swipe-model="chartdata_current" display-by="1" active-year="2016"></sales-data-swipe>
+              </div>
+                <div ng-show="viewingYear == '2015'">
+                    <sales-data-swipe swipe-viewing-year="2015" swipe-model="chartdata_prior" display-by="1"></sales-data-swipe>
+                </div>
+            </div>
+            <div class="col-md-5">
+                        <div class="modal-header"><h4 class="modal-title">Annual Summary for Last 12 Months</h4></div>
+                        <div class="chart-item-env col-xs-12 col-md-12">
+                            <div id="doughnut-1" style="width: auto; max-width:480px;"></div>
+                        </div>
+            </div>
+         </div> 
+           
+</div>
+
+
+
+<div class="modal-footer"><button type="button" class="btn btn-info" ng-click="currentModal.dismiss();">close</button></div>
+</script>
+
+
+<script type="text/ng-template" id="CustomerSalesFull">
+
+    <div class="modal-body">
+        <div class="modal-header text-center"> full 12 month display goes here.
+         </div>
+        <div class="row">
+        
+         
+                <table class="table table-condensed">
+                    <tr>
+                        <td ng-swipe-right="swipeRight()" ng-swipe-left="swipeLeft()" ng-repeat="(key, value) in salesItems | groupBy: 'YearDate'">
+                            {{key}}
+
+                            <table class="table table-condensed table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Qty</th>
+                                        <th>$ Amt</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in value">
+                                        <td class="col-md-5">{{item.Product_Type_Name}}</td>
+                                        <td class="col-md-1">{{item.Qty}}</td>
+                                        <td class="col-md-3">{{item.MonthTotal | currency }}</td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+
+                        </td>
+                    </tr>
+                </table>
+</div>
+        </div>
+            </script>

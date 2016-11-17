@@ -1,0 +1,177 @@
+﻿@{
+    PageData["title"] = "BCeen : Retail Invoices";
+}
+
+<div class="panel panel-default">
+
+    <div class="panel-heading">
+        <h1>Customer Prospects</h1>
+
+        <div class="panel-options">
+            <a href="" data-toggle="panel">
+                <span class="collapse-icon">&ndash;</span>
+                <span class="expand-icon">+</span>
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="panel-body form-wizard" ng-controller="ProspectsController as prospect">
+
+
+        <ul class="progress-tabs">
+            <li class="active ms-hover">
+                <a vt-showtab="#customer" progress-style vt-width="50%">
+                    Customer Information
+                    <span>1</span>
+                </a>
+            </li>
+            <li class="ms-hover">
+                <a vt-showtab="#contact" progress-style vt-width="100%">
+                    Customer Contacts
+                    <span>2</span>
+                </a>
+            </li>
+        </ul>
+        <div class="progress-indicator" style="width:50%"> <span></span> </div>
+        <div class="tab-content no-margin">
+            <div id="customer" ng-show="!prospect.showContact">
+                <form name="myForm" class="my-form validate" ng-submit="addProspect(prospect)">
+
+                    <div class="col-md-6 col-sm-12">
+                        <br />
+                        <br />
+                        <div class="input-group">
+                            <span class="input-group-addon"> <i class="linecons-shop"></i> </span>
+                            <input type="text" ng-model="prospect.Customer_Name" placeholder="Business Name" class="form-control" required />
+                            <span class="error" ng-show="myForm.input.$error.required">Required!</span>
+                        </div>
+                        <br />
+                        <div class="input-group">
+                            <span class="input-group-addon"> <i class="linecons-location"></i> </span>
+                            <input type="text" ng-model="prospect.Street1" placeholder="Street Address *" class="form-control" required />
+                            <input type="text" ng-model="prospect.Street2" placeholder="Street Address Cont'd' : Suite No. *" class="form-control" />
+                            <input type="text" ng-model="prospect.City" placeholder="City *" class="form-control" required="" />
+                            <select ng-model="prospect.province" class="form-control" required>
+                                <option ng-repeat="option in provinces" value="{{option.id}}">{{option.province}}</option>
+                                <span class="error" ng-show="myForm.input.$error.required">Required!</span>
+                            </select>
+                            <input type="text" ng-model="prospect.PostalCode" placeholder="Postal Code *" class="form-control" required />
+                            <input type="text" ng-model="prospect.Country" placeholder="Country *" class="form-control" required ng-focus="generateCustomerID(prospect)" />
+                        </div>
+                        <br />
+                    </div>
+                    <div class="col-md-push-1 col-md-3 col-sm-12">
+                        <div class="input-group input-group-lg input-group-minimal">
+                            <span class="input-group-addon"><i class="linecons-star"></i></span>
+                            <input type="text" placeholder="Customer ID" ng-model="prospect.Customer_ID" class="form-control" required />
+
+                        </div>
+                        <br />
+                        <div class="input-group input-group-sm input-group-minimal">
+                            <span class="input-group-addon"> <i class="linecons-mail"></i> </span>
+                            <input type="email" placeholder="Main Email" ng-model="prospect.EMail" class="form-control">
+                        </div>
+                        <br />
+                        <div class="input-group input-group-sm input-group-minimal">
+                            <span class="input-group-addon"> <i class="linecons-mobile"></i> </span>
+                            <input type="text" placeholder="Main Phone" ng-model="prospect.Phone" class="form-control">
+                        </div>
+                        <br />
+                        <div class="input-group input-group-sm input-group-minimal">
+                            <span class="input-group-addon"> <i class="linecons-mobile"></i> </span>
+                            <input type="text" placeholder="Main Fax" ng-model="prospect.Fax" class="form-control">
+                        </div>
+                        <br />
+                        <div class="input-group input-group-sm input-group-minimal">
+                            <span class="input-group-addon"> <i class="linecons-cloud"></i> </span>
+                            <input type="text" placeholder="Store Website" ng-model="prospect.Website" class="form-control">
+                        </div>
+                        <br />
+                        <div class="input-group input-group-sm input-group-minimal">
+                            <span class="input-group-addon"> <i class="linecons-cloud"></i> </span>
+                            <select ng-model="prospect.Profession_ID" class="form-control">
+                                <option value="" disabled>Profession ID</option>
+                                <option ng-repeat="option in professions" value="{{option.Profession_ID}}">{{option.Profession_Name}}</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <br />
+                    <div class="col-md-12">
+                        <input type="submit" class="btn btn-success btn-icon" value="Submit" />
+                    </div>
+                </form>
+                <ul class="pager wizard"> <li class="previous disabled"> <a href="#"><i class="entypo-left-open"></i> Previous</a> </li> <li class="next ms-hover"> <a href="#" ng-click="goNext()">Next <i class="entypo-right-open"></i></a> </li> </ul>
+
+            </div>
+            <div id="contact" ng-show="prospect.showContact">
+                <form name="contactForm" ng-submit="addContact(contact)" class="my-form validate">
+                    <div class="col-md-6 col-sm-12 clearfix">
+                        <div class="input-group input-group-sm input-group-minimal">
+                            <span class="input-group-addon"> <i class="linecons-user"></i> </span>
+                            <input type="text" placeholder="Contact Name" ng-model="contact.Name" class="form-control" required/>
+                        </div>
+                        <br />
+                        <div class="input-group input-group-sm input-group-minimal">
+                            <span class="input-group-addon"> <i class="linecons-graduation-cap"></i> </span>
+                            <input type="text" placeholder="Contact Title" ng-model="contact.Title" class="form-control"/>
+                        </div>
+                        <br />
+                        <div class="input-group input-group-sm input-group-minimal">
+                            <span class="input-group-addon"> <i class="linecons-mobile"></i> </span>
+                            <input type="text" placeholder="Contact Phone" ng-model="contact.Phone" class="form-control"/>
+                        </div>
+                        <br />
+                        <div class="input-group input-group-sm input-group-minimal">
+                            <span class="input-group-addon"> <i class="linecons-doc"></i> </span>
+                            <input type="text" placeholder="Contact Fax" ng-model="contact.Fax" class="form-control"/>
+                        </div>
+                        <br />
+                        <div class="input-group input-group-sm input-group-minimal">
+                            <span class="input-group-addon"> <i class="linecons-mobile"></i> </span>
+                            <input type="text" placeholder="Contact Cell" ng-model="contact.Pager" class="form-control"/>
+                        </div>
+                        <br />
+                        <div class="input-group input-group-sm input-group-minimal">
+                            <span class="input-group-addon"> <i class="linecons-mail"></i> </span>
+                            <input type="text" placeholder="Contact Email" ng-model="contact.Email" class="form-control"/>
+                        </div>
+                        <br />
+                    </div>
+                    <div class="col-md-5 col-md-push-1 col-sm-12">
+                        <div class="input-group input-group-lg input-group-minimal">
+                            <span class="input-group-addon"><i class="linecons-star"></i></span>
+                            <input type="text" placeholder="Customer ID" ng-model="contact.Customer_ID" class="form-control" disabled required/>
+
+                        </div>
+                        <br />
+                    </div>
+                    <br />
+                    <div class="col-md-12">
+                        <input type="submit" class="btn btn-success btn-icon" value="Submit" />
+                    </div>
+                </form>
+                <br />
+                <ul class="pager wizard"> <li class="previous"> <a href="#"><i class="entypo-left-open"></i> Previous</a> </li> <li class="next ms-hover disabled"> <a href="#">Next <i class="entypo-right-open"></i></a> </li> </ul>
+            </div>
+
+        </div>
+
+    </div>
+    <script type="text/ng-template" id="SuccessModal">
+        <div class="modal-header"><h4 class="modal-title">Customer Entry</h4></div>
+        <div class="modal-body">
+            <p>Customer has been added.  To Add Contact Information, go here <a href="">Go Here!!!!!</a>.</p>
+        </div>
+        <div class="modal-footer"><button type="button" class="btn btn-info" ng-click="currentModal.dismiss();">Continue</button></div>
+    </script>
+    <script type="text/ng-template" id="FailureModal">
+        <div class="modal-header"><h4 class="modal-title">Customer Entry</h4></div>
+        <div class="modal-body">
+            <p>Unable to process your request.  Either the customer exists, or there is another issue.  Try changing the Customer ID and try again.  Or, if you believe this is a technical issue, contact call Valerie ext. 225 for further investigation.</p>
+        </div>
+        <div class="modal-footer"><button type="button" class="btn btn-info" ng-click="currentModal.dismiss();">Continue</button></div>
+    </script>

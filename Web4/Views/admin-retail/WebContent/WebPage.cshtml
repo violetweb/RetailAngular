@@ -1,0 +1,39 @@
+﻿@{
+    Layout = null;
+}
+@{
+    PageData["title"] = "Optik KR : Manage Reviews";
+}
+
+<div class="panel panel-default" ng-controller="WebPageController as webpage">
+    <div class="panel-heading">
+
+        <div class="col-sm-1 pagination"><a ng-href='#here' ng-click="createInfo()" class="btn btn-primary btn-default">ADD NEW</a></div>
+        <div class="col-sm-2 pagination"><span>No. Items: ({{webpage.length}} )</span></div>
+        <div class="col-sm-3"><at-pagination at-config="config" at-list="filteredList"></at-pagination></div>
+        <div class="col-sm-3 pagination"><input type="text" class="form-control no-right-border form-focus-purple" ng-model="search" placeholder="Filter Results" /></div>
+        <div class="panel-options">
+            <a href="" data-toggle="panel">
+                <span class="collapse-icon">&ndash;</span>
+                <span class="expand-icon">+</span>
+            </a>
+            <a href="" data-toggle="remove">
+                &times;
+            </a>
+        </div>
+    </div>
+
+    <div class="panel-body">
+        <table at-table at-list="filteredList" at-config="config" class="table table-striped table-bordered dataTable" at-paginated>
+            <thead></thead>
+            <tbody>
+                <tr>
+                    <td><a ng-click="editPage(item.PageId)" class="btn btn-secondary btn-sm btn-icon icon-left">edit</a></td>
+                    <td><a ng-click="deletePage(item.PageId)" class="btn btn-danger btn-sm btn-icon icon-left">delete</a></td>                   
+                    <td at-sortable at-implicit at-attribute="Page_Name"></td>
+                    <td at-implicit at-attribute="Page_Title"></td>
+                    <td at-sortable at-implicit at-attribute="Link_Location"></td>
+                </tr>
+            </tbody>
+        </table>
+</div>

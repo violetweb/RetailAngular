@@ -1,0 +1,187 @@
+﻿@{
+    PageData["title"] = "Optik KR : Sales Mileage Tracking";
+}
+<!-- Panel for existing data -->
+<blockquote>
+    Disclaimer:  This application uses your browsers local storage system to store mileage records.  To ensure consistency, use the same browser on the same device each time.
+</blockquote>
+<div ng-controller="PriorMileageController" ng-show="showPrior">
+    <div class="panel panel-efault" ng-repeat="d in previousDays">
+        <div class="panel-heading">
+
+            <h4>You have unsubmitted mileage for : {{d.datevalue}}</h4>
+            <div class="panel-options">
+                <a href="" data-toggle="panel">
+                    <span class="collapse-icon">&ndash;</span>
+                    <span class="expand-icon">+</span>
+                </a>
+                <a href="" data-toggle="remove">
+                    &times;
+                </a>
+            </div>
+        </div>
+
+        <div class="panel-body">
+
+            <!-- LISTING OF EXISTING RECORDS FOR "TODAY"  -->
+            <table class="table table-striped table-condensed table-bordered">
+                <thead>
+                    <tr>
+                       
+                        <td>Client ID</td>
+                        <td>Odometer Start</td>
+                        <td>Odometer End</td>
+                     <!--   <td>Mileage Tracked</td> -->
+                        <td></td>
+                    </tr>
+                </thead>
+                <tr ng-repeat="p in d.datedata">
+                  
+                    <td><input type="text" ng-model="p.clientid" /></td>
+                    <td><input type="text" ng-model="p.startingmileage" /></td>
+                    <td><input type="text" ng-model="p.endingmileage" /></td>
+                   <td><input type="text" ng-model="p.mileageresult = p.endingmileage - p.startingmileage" class="hide"/><span>{{p.endingmileage - p.startingmileage}}</span></td> 
+
+                    <td>
+                        <button ng-click="updatePrior(p, d)" class="btn  btn-success btn-small"><i class="fa-edit"></i> <div class="hidden-xs">Update</div></button>
+                        <button ng-click="remMileageItem(p)" class="btn btn-dark btn-small"><i class="fa-remove"></i></button>
+                        <button ng-click="insertItemAfter(p,d,$index)" class="btn btn-small btn-purple"><i class="fa fa-angle-down"></i>Insert</button>
+                      
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><em>Only submit when you are sure you have completed all entries for this day/period.</em></td>
+                    <td>Total  : {{d.DailyTotal}}</td>
+                    <td><button ng-click="submitMileage(d.datevalue)" class="btn btn-success btn-small"><i class="fa-automobile"></i><div class="hidden-xs">Submit Mileage</div></button></td>
+                   
+                </tr>
+
+            </table>
+
+
+
+        </div>
+    </div>
+</div>
+<!-- PANEL FOR TODAYS DATA -->
+<div class="panel panel-color panel-blue" ng-controller="MileageController as mileage">
+    <div class="panel-heading">
+
+        <div class="panel-title">TODAY: {{datatitle}}</div>
+
+        <div class="panel-options">
+            <a href="" data-toggle="panel">
+                <span class="collapse-icon">&ndash;</span>
+                <span class="expand-icon">+</span>
+            </a>
+            <a href="" data-toggle="remove">
+                &times;
+            </a>
+        </div>
+    </div>
+
+    <div class="panel-body">
+        <!-- LISTING OF EXISTING RECORDS FOR "TODAY"  -->
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                   
+                    <td>Client ID</td>
+                    <td>Odometer Start</td>
+                    <td>Odometer End</td>
+                  <!--  <td>Mileage Tracked</td> -->
+                    <td></td>
+                </tr>
+            </thead>
+            <tr ng-repeat="m in todaysMileage track by $index">
+               
+                <td><input type="text" placeholder="Client / Reason" ng-model="m.clientid" /></td>
+                <td><input type="text" placeholder="Starting Mileage" ng-model="m.startingmileage" /></td>
+               <td><input type="text" placeholder="Ending Mileage" ng-model="m.endingmileage" /></td> 
+            <!--    <td><span ng-model="m.mileageresult">{m.mileageresult}</span></td> -->
+
+                <td>
+                    <button ng-click="updateToday()" class="btn  btn-blue btn-small"><i class="fa-edit"></i></button>
+                    <button ng-click="remMileageItem(m)" class="btn btn-dark btn-small"><i class="fa-remove"></i></button>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+                <td colspan="1">
+                    <h1>{{DailyTotal}}</h1>
+                </td>
+                <td>
+                    <button ng-click="submitMileage(datatitle)" class="btn btn-blue btn-small"><i class="fa-automobile"></i><div class="hidden-xs">Submit</div></button>
+                </td>
+              
+            </tr>
+        </table>
+
+        <!-- NEW ENTRY FORM. -->
+        <form novalidate="novalidate" class="profile-post-form" method="post" role="form">
+
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                       
+                        <td>Client ID</td>
+                        <td>Odometer Start</td>
+                        <td>Odometer End</td>
+                       
+                        <td></td>
+                    </tr>
+                </thead>
+                <tr class="warning">
+                   
+                    <td>
+                        <div class="wrap">
+                            <input ng-model="selected" type="text" />
+                            <i class='fa-remove' ng-click='clear()' ng-show='selected'></i>
+                        </div>
+                        <div class='wrap'>
+                            <input ng-change='lookupClient()' ng-model='query' placeholder='Lookup Client ID' type='text' xng-focus='cleared'>
+                            <ul class='{{state}} list-group' ng-show='query'>
+                                <li ng-click='select(item)' ng-repeat='item in customers | filter: query' class="list-group-item">
+                                    {{item.Customer_ID}} || {{item.Customer_Name}}
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td><input type="text" placeholder="Starting Mileage" ng-model="mileage.startingmileage" /></td>
+                    <td><input type="text" placeholder="Ending Mileage" ng-model="mileage.endingmileage" ng-blur="recalcMileage(mileage)" /></td>
+                 <!--   <td><span ng-model="mileage.mileageresult">{mileage.mileageresult}</span></td> -->
+
+                    <td>
+
+                        <button ng-click="newMileageItem(mileage)" class="btn btn-dark btn-small"><i class="fa-check-circle"></i></button>
+
+                    </td>
+                </tr>
+
+            </table>
+        </form>
+    </div>
+  
+</div>
+
+        <script type="text/ng-template" id="Modal">
+            <div class="modal-header"><h4 class="modal-title">Something went wrong.</h4></div>
+            <div class="modal-body">
+                <p>Your request produced no results;  Please try again.</p>
+            </div>
+            <div class="modal-footer"><button type="button" class="btn btn-info" ng-click="currentModal.dismiss();">Continue</button></div>
+        </script>
+        <script type="text/ng-template" id="SuccessModal">
+            <div class="modal-header"><h4 class="modal-title">Mileage</h4></div>
+            <div class="modal-body">
+                <p>Successfully entered Mileage.</p>
+            </div>
+            <div class="modal-footer"><button type="button" class="btn btn-info" ng-click="currentModal.dismiss();">Continue</button></div>
+        </script>
+        <script type="text/ng-template" id="FailureModal">
+            <div class="modal-header"><h4 class="modal-title">Mileage</h4></div>
+            <div class="modal-body">
+                <p>Something went wronge.</p>
+            </div>
+            <div class="modal-footer"><button type="button" class="btn btn-info" ng-click="currentModal.dismiss();">Continue</button></div>
+        </script>

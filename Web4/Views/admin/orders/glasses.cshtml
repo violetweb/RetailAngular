@@ -1,0 +1,186 @@
+<div ng-controller="GlassesController as glasses">
+
+    <div class="row">
+
+        <div class="col-sm-12">
+
+            <div class="panel panel-default">
+
+                <div class="panel-heading">
+                    <div class="panel-title"> {{title}}</div>
+                </div>
+
+                <div class="panel-body">
+                    <p>{{description}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+     <!--CHOOSE GLASSES (ICON SPRITES)-->
+    <div class="row">
+
+            <div class="col-xs-1 col-md-4">
+                <div class="panel panel-info panel-color">
+
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Patient Information</h3>
+                        <div class="panel-options">
+                            <a href="" data-toggle="panel">
+                                <span class="collapse-icon">&ndash;</span>
+                                <span class="expand-icon">+</span>
+                            </a>
+                            <a href="" data-toggle="remove">
+                                &times;
+                            </a>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="scrollable ps-container ps-active-y" data-max-height="380" style="max-height: 380px;">
+
+                            <a ng-click="setShape()" href="#"><i class="shape s0 rectangle"></i></a>
+                            <a ng-click="setShape()" href="#"><i class="shape s1 rectangle-rounded"></i></a>
+                            <a ng-click="setShape()" href="#"><i class="shape s2 butterfly"></i></a>
+                            <a ng-click="setShape()" href="#"><i class="shape s3 eye"></i></a>
+                            <a ng-click="setShape()" href="#"><i class="shape s4 oval"></i></a>
+                            <a ng-click="setShape()" href="#"><i class="shape s5 rounded-aviator"></i></a>
+                            <a ng-click="setShape()" href="#"><i class="shape s6 round-203"></i></a>
+                            <a ng-click="setShape()" href="#"><i class="shape s7 round-202"></i></a>
+                            <a ng-click="setShape()" href="#"><i class="shape s8 round"></i></a>
+                            <a ng-click="setShape()" href="#"><i class="shape s9 aviator-modified"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="panel panel-default panel-color">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            Your Selection
+                        </div>
+                    </div>
+                    <!--SHOW RESULT IMAGE -->
+                    <div class="panel-body">
+                        <img src="{{mainImage}}" />
+                    </div>
+                </div>
+            </div>
+    </div>
+    <div class="row">
+           <div class="col-sm-12">
+
+                    <div class="panel panel-color panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Patient Information</h3>
+                            <div class="panel-options">
+                                <a href="" data-toggle="panel">
+                                    <span class="collapse-icon">&ndash;</span>
+                                    <span class="expand-icon">+</span>
+                                </a>
+                                <a href="" data-toggle="remove">
+                                    &times;
+                                </a>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+
+                            <form role="form" class="form-horizontal">
+
+                                <div class="col-md-8">
+
+                                    <div class="form-group">
+                                        <label>Enter the Client's Name</label>
+                                        <div class="input-group">
+                                            <span class="input-group-btn" dropdown>
+                                                <button type="button" class="btn btn-red dropdown-toggle" data-toggle="dropdown">
+                                                    Rush <span class="caret"></span>
+                                                </button>
+
+                                                <ul class="dropdown-menu dropdown-red no-spacing">
+                                                    <li><a href="">No</a></li>
+                                                    <li><a href="">Yes</a></li>
+                                                    <li><a href="">Yes; Urgently!</a></li>
+                                                </ul>
+                                            </span>
+
+                                            <input type="text" class="form-control no-left-border form-focus-red" placeholder="Full Name (First Last)" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Do you have a coupon code?</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control form-focus-red" placeholder="Coupon Code" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="panel panel-color panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Frame Selections</h3>
+                            <div class="panel-options">
+                                <a href="" data-toggle="panel">
+                                    <span class="collapse-icon">&ndash;</span>
+                                    <span class="expand-icon">+</span>
+                                </a>
+                                <a href="" data-toggle="remove">
+                                    &times;
+                                </a>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Dropdown addon</label>
+
+                                <div class="col-sm-10">
+
+                                    <div class="input-group">
+                                        <span class="input-group-btn" dropdown>
+                                            <button type="button" class="btn btn-red dropdown-toggle" data-toggle="dropdown">
+                                                Action <span class="caret"></span>
+                                            </button>
+
+                                            <ul class="dropdown-menu dropdown-red no-spacing">
+                                                <li><a href="">Action</a></li>
+                                                <li><a href="">Another action</a></li>
+                                                <li><a href="">Something else here</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="">Separated link</a></li>
+                                            </ul>
+                                        </span>
+
+                                        <input type="text" class="form-control no-left-border form-focus-red">
+                                    </div>
+
+                                    <br />
+
+                                    <div class="input-group">
+                                        <input type="text" class="form-control no-right-border form-focus-info">
+
+                                        <span class="input-group-btn" dropdown>
+                                            <button type="button" class="btn btn-info">Action</button>
+                                            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                                                <i class="fa-info"></i>
+                                            </button>
+
+                                            <ul class="dropdown-menu dropdown">
+                                                <li><a href="">Action</a></li>
+                                                <li><a href="">Another action</a></li>
+                                                <li><a href="">Something else here</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="">Separated link</a></li>
+                                            </ul>
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+     </div>
+</div>
+

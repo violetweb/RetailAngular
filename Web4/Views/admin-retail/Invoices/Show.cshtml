@@ -1,0 +1,102 @@
+﻿<div ng-controller="InvoiceDetailController" class="panel panel-default">
+    <form novalidate="novalidate" class="form-horizontal" role="form">
+        <div class="panel-heading panel-color">
+            <div class="super-large text-secondary" xe-counter data-count="this" data-from="0" data-to="131" data-duration="1.5">{{invoice.Invoice_Number}}</div>
+            <div class="form-group col-sm-4">
+                <label class="control-label" for="Customer_ID">Patient ID:</label>
+                <div class="controls">
+                    <input type="text" class="form-control" disabled placeholder="OPTIK CND" ng-model="Patient_ID" />
+                </div>
+                <label class="control-label" for="Amount">Amount :</label>
+                <div class="controls">
+                    <input type="text" class="form-control" disabled placeholder="Amount" ng-model="invoice.Amount"/>
+                </div>
+                <label class="control-label" for="First Name">First Name :</label>
+                <div class="controls">
+                    <input type="text" class="form-control" disabled placeholder="First Name" ng-model="invoice.First_Name" />
+                </div>
+                <label class="control-label" for="Amount">Amount :</label>
+                <div class="controls">
+                    <input type="text" class="form-control" disabled placeholder="Last Name" ng-model="invoice.Last_Name" />
+                </div>
+            </div>
+            <!-- "Invoice_Number": item.Invoice_Number,
+               "Date": $filter('date')(item.InvoiceDate, "MM/dd/yyyy HH:mm:ss Z"),
+               "Patient_ID" : item.Patient_ID,
+               "Amount": item.Amount,
+               "Link" : item.Link,
+               "First_Name": item.First_Name,
+               "Last_Name": item.Last_Name,
+               "Appt_Street_Number": item.Appt_Street_Number,
+               "Street_Name": item.Street_Name,
+               "City": item.City,
+               "Province": item.Province,
+                "Country_Code" : item.Country_Code,
+                "Postal_Code": item.Postal_Code,
+                "Shipping_Courier": item.Shipping_Courier,
+                "Store_for_Future_User": item.Store_for_Future_User,
+                "Tracking_Number": item.Tracking_Number,
+                "Payment_ID": item.Payment_ID,
+                "Email_Address": item.Email_Address,
+                "Phone": item.Phone,
+                "DiscountType": 0,
+                "DiscountValue": 0,
+                "Customer_ID" : ""-->
+        </div>
+        <div class="panel-body panel-default">
+
+            <div class="form-group">
+                <div class="col-sm-6">
+                    <label class="control-label" for=""></label>
+                    <div class="controls">
+                        <input type="text" class="form-control" placeholder="a" ng-model="invoice.Tracking_Number" />
+                    </div>
+                    <ul>
+                        <li>Apply to a specific item, eg. FOR Acuvue 1 Day enter the code, 'a'.</li>
+                        <li>Apply to a group of products, eg.  All Glasses : [3], All Lenses [1]</li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <div class="col-sm-2">
+                        <label class="control-label" for="Email Address">Email Address:</label>+
+                        <div class="input-group input-group-sm input-group-minimal">
+                            <span class="input-group-addon">
+                                <i class="fa-calendar"></i>
+                            </span>
+                            <input type="text" class="form-control" data-mask="date" ng-model="invoice.Email_Address" />
+                        </div>
+                    </div>
+
+                 
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                   
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                 
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <ul>
+                    <li>For Shipping, comments are displayed on the Shipping Address page (Requires both French and English).</li>
+                    <li>Otherwise, enter a description to provide context.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-12 controls pull-right">
+                <a ng-click="cancel()" class="btn btn-small">cancel</a>
+                <a ng-show="layoutOptions.isCreate == false" ng-click="updateInvoice()" class="btn btn-small btn-purple">Update Review</a>
+              
+            </div>
+        </div>
+
+    </form>
+</div>

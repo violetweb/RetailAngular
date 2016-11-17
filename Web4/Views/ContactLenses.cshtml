@@ -1,0 +1,49 @@
+﻿@{
+    PageData["title"] = "Optik KR : Manage Contact Lenses";
+}
+<div ng-controller="ContactLensesCtrl">
+    <div class="page-header">
+        <h1>{{Greeting}} <small> Contact Lenses</small></h1>
+        Number of Contact Lenses: ({{contactlenses.length}} ) <a ng-href='#here' ng-click="createReview()" class="btn btn-large btn-default">ADD NEW</a>
+        Search: <input type="text" ng-model="search" placeholder="Filter Results">
+        <a ng-href="#" ng-click="clearFilter()" class="btn btn-small btn-block">Clear Filter</a>
+
+    </div>
+    <div class="row">
+        <table class="table table-responsive table-hover">
+            <thead>
+                <tr>
+                    <td><span class="fade fa-edit"></span><span class="fa- fa-delete"></span></td>
+                    <td><a ng-click='predicate="item.Item_ID"'>Item ID</a></td>
+                    <td><a ng-click='predicate="item.ProductName"'>Product Name</a></td>
+                    <td></td>
+                
+                </tr>
+            </thead>
+            <tr class="" ng-repeat="item in contactlenses = (contactlenses | filter:search)">
+
+                <td>
+                    <a ng-click="editReview(item.ID)" class="btn btn-small btn-primary">edit</a>
+                    <a ng-click="deleteReview(item.ID)" class="btn btn-small btn-danger">delete</a>
+                </td>
+                <td>
+                    <p data-ng-hide="item.editMode">{{item.Item_ID}}</p>
+                    <p data-ng-show="item.editMode"><input type="text" data-ng-model="item.Item_ID" /></p>
+                </td>
+                <td>
+                    <p data-ng-hide="item.editMode">{{item.ProductName}}</p>
+                    <p data-ng-show="item.editMode"><input type="text" data-ng-model="item.ProductName" /></p>
+
+                </td>
+                <td class="col-lg-3">
+                    <img width="100" src="//optikkandr.com/Images/SKUs/{{item.Root_Folder}}/Icons/{{item.File_Name}}" alt="{{item.ProductName}}" />
+
+                </td>
+
+
+            </tr>
+        </table>
+
+    </div>
+
+</div>

@@ -1,0 +1,45 @@
+﻿@{
+    PageData["title"] = "Lens.care Retail Manager";
+}
+<div class="row" ng-controller="HomeController">
+
+    <div class="col-sm-12">
+
+        <div class="panel panel-default">
+
+            <div class="panel-heading">
+                <div class="panel-title"> {{title}}</div>
+            </div>
+
+            <div class="panel-body">
+                {{mainContent}}
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" ng-if="layoutOptions.sidebar.userProfile == true">
+    <div class="col-md-12">
+        <div class="panel-group" id="accordion-test-2">
+         
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion-test-3" href="#collapseThree-4" class="collapsed" aria-expanded="false">
+                            Client Calendar Tool
+
+                        </a>
+                        <p></p>
+
+                    </div>
+                </div>
+                <div id="collapseThree-4" class="panel-collapse collapse" aria-expanded="false">
+                    
+                    <div sales-calendar ng-model="eventItems"></div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

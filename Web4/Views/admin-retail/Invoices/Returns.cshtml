@@ -1,0 +1,57 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="panel panel-default" ng-controller="ReturnsController as return">
+
+    <div class="panel-heading">
+
+        <div class="col-sm-1 pagination"><span>No. Items: ({{filteredList.length}} )</span></div>
+        <div class="col-sm-6"><at-pagination at-config="config" at-list="filteredList"></at-pagination></div>
+        <div class="col-sm-2 pagination">
+            <input type="text" ng-change="updateFilteredList()" ng-model="query" placeholder="Filter Results" class="form-control form-focus-purple ng-valid ng-dirty" />
+
+        </div>
+
+        <div class="panel-options">
+            <a href="" data-toggle="panel">
+                <span class="collapse-icon">&ndash;</span>
+                <span class="expand-icon">+</span>
+            </a>
+            <a href="" data-toggle="remove">
+                &times;
+            </a>
+        </div>
+    </div>
+
+
+
+    <div class="panel-body">
+
+        <form id="Return" name="returnForm" novalidate>
+
+            <table at-table at-list="filteredList" at-config="config" class="table table-striped table-condensed table-bordered dataTable" at-paginated>
+                <thead></thead>
+                <tbody>
+                    <tr class="panel-group" at-row="separator">
+                        <td at-sortable at-implicit at-initial-sorting="desc" at-attribute="InvoiceDate" at-title="Date"></td>
+                        <td at-sortable at-implicit at-initial-sorting="desc" at-attribute="Invoice_Number" at-title="Inv No."></td>
+                        <td at-sortable at-initial-sorting="desc" at-implicit at-attribute="Order_ID" at-title="Order ID"></td>
+                        <td at-implicit at-attribute="Qty"></td>
+                        <td at-implicit at-attribute="Price"></td>   
+                        <td at-implicit at-attribute="Item_ID"></td>
+                        <td at-implicit at-attribute="Web_Name"></td>                                          
+                        <td at-refundme="Invoice_Number" at-refundamount="Amount" at-attribute="RefundAmt" at-title="Return/Refund"></td>
+                        <td at-sortable at-implicit at-attribute="Amount" at-title="Amt"></td>
+                        <td at-sortable at-implicit at-attribute="First_Name" at-title="First"></td>
+                        <td at-sortable at-implicit at-attribute="Last_Name" at-title="Last"></td>                      
+                        <td at-sortable at-implicit at-attribute="Postal_Code" at-title="postal"></td>                        
+                        <td at-sortable at-implicit at-attribute="Phone" at-title="Phone"></td>
+
+                    </tr>
+                </tbody>
+            </table>
+
+        </form>
+    </div>
+</div>

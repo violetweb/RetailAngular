@@ -1,0 +1,112 @@
+﻿<div ng-controller="PromosDetailController" class="panel panel-default">
+    <form novalidate="novalidate" class="form-horizontal" role="form">
+        <div class="panel-heading panel-color">
+            <div class="super-large text-secondary" xe-counter data-count="this" data-from="0" data-to="131" data-duration="1.5">{{promo.Promotion_ID}}</div>
+            <div class="form-group col-sm-4">
+                <label class="control-label" for="Customer_ID">Customer ID:</label>
+                <div class="controls">
+                    <input type="text" class="form-control" disabled placeholder="OPTIK CND" ng-model="Customer_ID" />
+                </div>
+
+            </div>
+
+        </div>
+        <div class="panel-body panel-default">
+
+            <div class="form-group">
+                <div class="col-sm-6">
+                    <label class="control-label" for="Item_ID">ITEM ID: Enter a Unique Identifier of the Product, or Product Grouping to "Apply the Promotion".</label>
+                    <div class="controls">
+                        <input type="text" class="form-control" placeholder="a" ng-model="promo.Item_ID" />
+                    </div>
+                    <ul>
+                        <li>Apply to a specific item, eg. FOR Acuvue 1 Day enter the code, 'a'.</li>
+                        <li>Apply to a group of products, eg.  All Glasses : [3], All Lenses [1]</li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <div class="col-sm-2">
+                        <label class="control-label" for="StartDate">Start Date:</label>+
+                        <div class="input-group input-group-sm input-group-minimal">
+                            <span class="input-group-addon">
+                                <i class="fa-calendar"></i>
+                            </span>
+                            <input type="text" class="form-control" data-mask="date" ng-model="promo.Start_Date" />
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2 col-xs-push-1">
+                        <label class="control-label" for="StartDate">End Date:</label>+
+                        <div class="input-group input-group-sm input-group-minimal">
+                            <span class="input-group-addon">
+                                <i class="fa-calendar"></i>
+                            </span>
+                            <input type="text" class="form-control" data-mask="date" ng-model="promo.End_Date" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+               <div class="col-sm-12">
+                    <div class="col-sm-1">
+                        <label class="control-label" for="Min_Qty">Min. Qty</label>
+                        <div class="controls">
+                            <input type="text" class="form-control" placeholder="1" ng-model="promo.Min_Qty" />
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="control-label" for="Price">Price</label>
+                        <div class="controls">
+                            <input type="text" class="form-control" placeholder="9.99" ng-model="promo.Price" />
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="control-label" for="Percentage">Is Price Percent?</label>
+                        <div class="controls">
+                            <input type="text" class="form-control" placeholder="True / False" ng-model="promo.Percentage" />
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="control-label" for="Coupon_Code">Coupon Code (if applicable)</label>
+                        <div class="controls">
+                            <input type="text" class="form-control" placeholder="" ng-model="promo.Coupon_Code" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">                  
+                        <div class="col-sm-4">
+                            <label class="control-label" for="Comments">Comments (English):</label>
+                            <div class="controls">
+                                <textarea class="form-control" ng-model="review.Comments" />
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <label class="control-label" for="CommentsFr">Comments (French):</label>
+                            <div class="controls">
+                                <textarea class="form-control" ng-model="review.Comments_FR" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <ul>
+                        <li>For Shipping, comments are displayed on the Shipping Address page (Requires both French and English).</li>
+                        <li>Otherwise, enter a description to provide context.</li>
+                    </ul>
+                </div>                
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12 controls pull-right">
+                    <a ng-click="cancel()" class="btn btn-small">cancel</a>
+                    <a ng-show="layoutOptions.isCreate == false" ng-click="updateReview()" class="btn btn-small btn-purple">Update Review</a>
+                    <a ng-show="layoutOptions.isCreate == true" ng-click="createNewReview()" class="btn btn-small btn-purple">Create New Review</a>
+                </div>
+            </div>
+
+    </form>
+</div>

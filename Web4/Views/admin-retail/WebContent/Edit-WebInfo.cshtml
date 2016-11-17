@@ -1,0 +1,34 @@
+﻿<div ng-controller="WebInfoDetailController" class="panel panel-default">
+    <h3 class="text-gray">
+        Edit<br />
+        <small class="text-muted">Lens.care content editor.</small>
+    </h3>
+    <div class="form-group">
+        <div class="controls">
+            <a ng-click="toggleLang(E)" class="btn btn-small btn-purple" ng-show="layoutOptions.lang=='E'">ENGLISH</a>
+            <a ng-click="toggleLang(F)" class="btn btn-small btn-purple" ng-show="layoutOptions.lang=='F'">FRENCH</a>
+        </div>
+    </div>
+    <br />
+    <form novalidate="novalidate" class="form-horizontal" role="form" ng-show="layoutOptions.lang=='E'">
+        <input type="text" class="form-control" placeholder="Page Identifier" ng-model="webinfo.Page_Id" />
+        <input type="text" class="form-control" placeholder="Title" ng-model="webinfo.TextTitle" /><br/>       
+        <label> eg.  Footer has 4 zones:  Footer1 (column1), Footer2 (column2), Footer3(column3)</label>
+        <input type="text" class="form-control" placeholder="Display Location" ng-model="webinfo.DisplayLocation"/><br/>
+        <input type="text" class="form-control" placeholder="Web URL" ng-model="webinfo.Url"/><br/>
+        <input type="text" class="form-control" placeholder="Display Title" ng-model="webinfo.DisplayTitle" /><br />
+        <div class="form-group">
+            <textarea class="form-control wysihtml5" ng-model="webinfo.Text" my-htmleditor data-stylesheet-url="assets/js/wysihtml5/lib/css/wysiwyg-color.css" name="wysiwyg" id="wysiwyg">
+                          </textarea>
+        </div>       
+        <div class="form-group">
+            <div class="controls">
+                <a ng-click="cancel()" class="btn btn-small">cancel</a>
+                <a ng-show="layoutOptions.isCreate == false" ng-click="updateInfo()" class="btn btn-small btn-purple">Update Info</a>
+                <a ng-show="layoutOptions.isCreate == true" ng-click="createNewWebInfo()" class="btn btn-small btn-purple">Create New</a>
+            </div>
+        </div>
+    </form>
+  
+   
+</div>

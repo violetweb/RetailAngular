@@ -1,0 +1,51 @@
+<section class="calendar-env">
+	
+	<div class="col-sm-9 calendar-right">
+		
+		<div class="calendar-main">
+			
+			<div id="calendar"></div>
+			
+		</div>
+		
+	</div>
+	
+	<div class="col-sm-3 calendar-left">
+		
+		<div class="calendar-sidebar">
+			
+			<form method="post" id="add_event_form">
+				<input type="text" class="form-control" placeholder="Add new event..." />
+			</form>
+			
+			<br />
+				
+            <ul class="list-unstyled calendar-list" id="events-list">
+                <li class="list-header">Drag to the calendar</li>
+                
+                <li><a href="" data-event-class="event-color-success"><span class="badge badge-success badge-roundless upper">Meeting</span></a></li>
+                <li>
+                    <a href="" data-event-class="event-color-purple">
+                        <span class="badge badge-purple badge-roundless upper">Meal</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="" data-event-class="event-color-red">
+                        <span class="badge badge-red badge-roundless upper">Travel Time</span>
+                    </a>
+                </li>
+                <li ng-repeat="item in calendarDraggable">
+                    <a href="" data-event-class="event-color-turquoise">
+                        <span class="badge badge-turquoise badge-roundless upper">
+                            {{item.Customer_ID}} | {{item.Customer_Name}}
+                        </span>
+                    </a>
+                </li>
+            </ul>
+			
+		</div>
+		
+	</div>
+	
+</section>
+

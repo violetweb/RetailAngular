@@ -1,0 +1,16 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    VALERIE TROTTER -- WEB DEVELOPER -- <twitter>
+
+# THANKS
+
+    <name>
+
+# TECHNOLOGY COLOPHON
+
+    HTML5, CSS3
+    AngularJS, jQuery, Bootstrap,
+	CSharp, 4.5.1, MVC, WebAPI 2.0, Restful, EntityFramework

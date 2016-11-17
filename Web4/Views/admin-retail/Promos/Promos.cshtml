@@ -1,0 +1,99 @@
+﻿@{
+    PageData["title"] = "Optik KR : Manage Reviews";
+}
+
+<div class="panel panel-default" ng-controller="PromosController as promo">
+    <div class="panel-heading">
+
+        <div class="col-sm-1 pagination"><a ng-href='#here' ng-click="createReview()" class="btn btn-primary btn-default">ADD NEW</a></div>
+        <div class="col-sm-2 pagination"><span>No. Items: ({{promos.length}} )</span></div>
+        <div class="col-sm-3"><at-pagination at-config="config" at-list="filteredList"></at-pagination></div>
+        <div class="col-sm-3 pagination"><input type="text" class="form-control no-right-border form-focus-purple" ng-model="search" placeholder="Filter Results" /></div>
+
+        <div class="panel-options">
+            <a href="" data-toggle="panel">
+                <span class="collapse-icon">&ndash;</span>
+                <span class="expand-icon">+</span>
+            </a>
+            <a href="" data-toggle="remove">
+                &times;
+            </a>
+        </div>
+    </div>
+   
+    <div class="panel-body">
+
+        <table at-table at-list="filteredList" at-config="config" class="table table-striped table-bordered dataTable" at-paginated>
+            <thead></thead>
+            <tbody>
+                <tr>
+                    <td><a ng-click="editPromo(item.Promotion_ID)" class="btn btn-secondary btn-sm btn-icon icon-left">edit</a></td>
+                    <td><a ng-click="deletePromo(item.Promotion_ID)" class="btn btn-danger btn-sm btn-icon icon-left">delete</a></td>
+                    <td at-sortable at-initial-sorting="asc" at-implicit at-attribute="Promotion_ID"></td>
+                    <td at-sortable at-implicit at-attribute="Customer_ID"></td>
+                    <td at-implicit at-attribute="Start_Date"></td>
+                    <td at-implicit at-attribute="End_Date"></td>
+                    <td at-sortable at-implicit at-attribute="Min_Qty"></td>
+                    <td at-sortable at-implicit at-attribute="Price"></td>
+                    <td at-sortable at-implicit at-attribute="Percentage"></td>
+                    <td at-sortable at-implicit at-attribute="Comment"></td>
+                    <td at-sortable at-implicit at-attribute="Coupon_Code"></td>
+                    <td at-sortable at-implicit at-attribute="Comment_Fr"></td>
+                    
+                </tr>
+            </tbody>
+        </table>
+
+        <!--        <table id="tblReviews" class="table table-striped table-bordered dataTable">
+                <thead>
+                    <tr>
+                        <th><span class="fade fa-edit"></span><span class="fa- fa-delete"></span></th>
+                        <th>Item ID</th>
+                        <th>Review Title</th>
+                        <th>Comments</th>
+                        <th>Review By</th>
+                        <th>Rating</th>
+                        <th>Show (1=Yes, 0=No)</th>
+                    </tr>
+                </thead>
+                <tr class="" ng-repeat="item in reviews = (reviews | filter:search)">
+                    <td>
+                        <a ng-click="editReview(item.ID)" class="btn btn-secondary btn-sm btn-icon icon-left">edit</a>
+                        <a ng-click="deleteReview(item.ID)" class="btn btn-danger btn-sm btn-icon icon-left">delete</a>
+                    </td>
+                    <td>
+                        <p data-ng-hide="item.editMode">{{item.ItemID}}</p>
+                        <p data-ng-show="item.editMode"><input type="text" data-ng-model="item.ItemID" /></p>
+                    </td>
+                    <td>
+                        <p data-ng-hide="item.editMode">{{item.ReviewTitle}}</p>
+                        <p data-ng-show="item.editMode"><input type="text" data-ng-model="item.ReviewTitle" /></p>
+
+                    </td>
+                    <td>
+                        <p data-ng-hide="item.editMode">{{item.ReviewComments}}</p>
+                        <p data-ng-show="item.editMode"><input type="text" data-ng-model="item.ReviewComments" /></p>
+
+                    </td>
+
+                    <td>
+                        <p data-ng-hide="item.editMode">{{item.ReviewBy}}</p>
+                        <p data-ng-show="item.editMode"><input type="text" data-ng-model="item.ReviewBy" /></p>
+                    </td>
+                    <td>
+                        <p data-ng-hide="item.editMode">{{item.ReviewRating}}</p>
+                        <p data-ng-show="item.editMode"><input type="text" data-ng-model="item.ReviewRating" /></p>
+
+                    </td>
+
+                    <td>
+                        <p data-ng-hide="item.editMode">{{item.Display}}</p>
+                        <p data-ng-show="item.editMode"><input type="text" data-ng-model="item.Display" /></p>
+
+                    </td>
+                </tr>
+            </table>
+            -->
+    </div>
+
+</div>

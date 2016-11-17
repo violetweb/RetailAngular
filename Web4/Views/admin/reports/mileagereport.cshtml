@@ -1,0 +1,87 @@
+﻿@{
+    PageData["title"] = "Optik KR : Report : Sales Mileage";
+}
+
+<div class="panel panel-default" ng-controller="MileageReportController as mrp">
+    <div class="panel-heading">
+
+        Choose Sales Person
+        <div class="panel-heading">
+            <div class="col-md-4">
+                <select id="SalesPerson" class="form-control" ng-model="salespersons" ng-init="updateData('0')" ng-selected="salespersons" ng-change="updateData(salespersons)">
+                    <option value="0">Choose Sales Person</option>
+                    <option value="166">Paul Carter</option>
+                    <option value="418">Brenda Tosoff</option>
+                    <option value="174">Cheryl Lemieux</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                    <div class="btn-group">
+                       
+                        <button class="btn btn-purple" ng-class="{active : searchByMonth.ReportMonth === 'Jan'}" ng-model="ReportMonth" ng-click="searchByMonth = {ReportMonth: 'Jan'}">Jan</button>
+                        <button class="btn btn-purple" ng-class="{active : searchByMonth.ReportMonth === 'Feb'}" ng-model="ReportMonth" ng-click="searchByMonth = {ReportMonth: 'Feb'}">Feb</button>
+                        <button class="btn btn-purple" ng-class="{active : searchByMonth.ReportMonth === 'Mar'}" ng-model="ReportMonth" ng-click="searchByMonth = {ReportMonth: 'Mar'}">Mar</button>
+                        <button class="btn btn-purple" ng-class="{active : searchByMonth.ReportMonth === 'Apr'}" ng-model="ReportMonth" ng-click="searchByMonth = {ReportMonth: 'Apr'}">Apr</button>
+                        <button class="btn btn-purple" ng-class="{active : searchByMonth.ReportMonth === 'May'}" ng-model="ReportMonth" ng-click="searchByMonth = {ReportMonth: 'May'}">May</button>
+                        <button class="btn btn-purple" ng-class="{active : searchByMonth.ReportMonth === 'Jun'}" ng-model="ReportMonth" ng-click="searchByMonth = {ReportMonth: 'Jun'}">Jun</button>
+                        <button class="btn btn-purple" ng-class="{active : searchByMonth.ReportMonth === 'Jul'}" ng-model="ReportMonth" ng-click="searchByMonth = {ReportMonth: 'Jul'}">Jul</button>
+                        <button class="btn btn-purple" ng-class="{active : searchByMonth.ReportMonth === 'Aug'}" ng-model="ReportMonth" ng-click="searchByMonth = {ReportMonth: 'Aug'}">Aug</button>
+                        <button class="btn btn-purple" ng-class="{active : searchByMonth.ReportMonth === 'Sep'}" ng-model="ReportMonth" ng-click="searchByMonth = {ReportMonth: 'Sep'}">Sep</button>
+                        <button class="btn btn-purple" ng-class="{active : searchByMonth.ReportMonth === 'Oct'}" ng-model="ReportMonth" ng-click="searchByMonth = {ReportMonth: 'Oct'}">Oct</button>
+                        <button class="btn btn-purple" ng-class="{active : searchByMonth.ReportMonth === 'Nov'}" ng-model="ReportMonth" ng-click="searchByMonth = {ReportMonth: 'Nov'}">Nov</button>
+                        <button class="btn btn-purple" ng-class="{active : searchByMonth.ReportMonth === 'Dec'}" ng-model="ReportMonth" ng-click="searchByMonth = {ReportMonth: 'Dec'}">Dec</button>
+                    </div>
+                </div>
+            <div class="col-md-4">
+                {{searchByMonth.ReportMonth}} : {{searchByMonth}}
+                <button id="year2016" class="btn btn-success" ng-click='searchByYear = {ReportYear : "2016"}'>2016</button>
+                <button id="year2017" class="btn btn-success" ng-click='searchByYear = {ReportYear: "2017"}'>2017</button>
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-small" ng-click="updateData('0')">Reset</button>
+            </div>
+
+            <div class="col-sm-2 pagination"><span>No. Items: ({{data.length}} )</span></div>
+            <!--  <div class="col-sm-3"><at-pagination at-config="config" at-list="filteredList"></at-pagination></div>
+              <div class="col-sm-3 pagination"><input type="text" class="form-control no-right-border form-focus-purple" ng-model="search" placeholder="Filter Results" /></div>
+                -->
+
+        </div>
+        <div class="panel-options">
+            <a href="" data-toggle="panel">
+                <span class="collapse-icon">&ndash;</span>
+                <span class="expand-icon">+</span>
+            </a>
+            <a href="" data-toggle="remove">
+                &times;
+            </a>
+        </div>
+    </div>
+
+
+    <div class="panel-body">
+
+        <h1>You selected: {{salespersons.name}}</h1>
+
+        <table class="table table-striped table-condensed table-bordered">
+            <thead></thead>
+            <tbody>
+                <tr class="panel-group" ng-repeat="d in filteredList | filter:searchByMonth | filter:searchByYear | filter: searchBySalesperson">
+                    <td class="col-sm-3">{{d.SalesPerson}}</td>
+                    <td class="col-sm-2">{{d.ReportMonth}}&nbsp;{{d.ReportDay}},&nbsp;{{d.ReportYear}}</td>
+                    <td class="col-sm-2">{{d.mileageresult}}</td>
+                    <td class="col-sm-4">{{d.TravelClient}}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>{{filteredList | filter:searchByMonth | filter:searchByYear | sumUP:'mileageresult' | filter:searchBySalesperson }}</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+
+    </div>

@@ -1,0 +1,30 @@
+<section class="sidebar-user-info" ng-class="{'mobile-is-visible': layoutOptions.sidebar.isMenuOpenMobile}">
+	<div class="sidebar-user-info-inner">
+		<a href="/user/edit-profile" class="user-profile">
+			<img src="../Content/images/user-4.png" width="60" height="60" class="img-circle img-corona" alt="user-pic" />
+			<span>
+				<strong>{{Name}}</strong>
+				{{Company}}
+			</span>
+		</a>
+		<ul class="user-links list-unstyled">
+			<li>
+				<a href="/user/edit-profile" title="Edit profile">
+					<i class="linecons-user"></i>
+					Edit profile
+				</a>
+			</li>
+			<li>
+				<a href="/user/mailbox-inbox" title="Mailbox">
+					<i class="linecons-mail"></i>
+					Mailbox
+				</a>
+			</li>
+			<li class="logout-link">
+				<a href="/logout" title="Log out">
+					<i class="fa-power-off"></i>
+				</a>
+			</li>
+		</ul>
+	</div>
+</section>

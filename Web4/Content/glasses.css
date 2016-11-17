@@ -1,0 +1,78 @@
+/**
+ *
+ * Apply your custom CSS here
+ *
+*/
+
+body {	
+}
+
+a {
+}
+
+
+/*************************************
+	*	ICONS : GLASSES
+	*	Images delivered via sprite.
+*=====================================*/
+
+.shape {
+	width:216px;
+	height:72px;
+	display:block;
+	margin:20px 0;
+	opacity:.5;
+	 -webkit-transition: opacity .5s ease-out-in;
+  	-moz-transition: opacity .5s ease-out-in;
+  	-ms-transition: opacity .5s ease-in-out;
+  	-o-transition: opacity .5s ease-in-out;
+  	transition: opacity .5s ease-in-out;
+}
+
+.shape:hover, .shape:active{
+  zoom: 1;
+  filter: alpha(opacity=1);
+  opacity: 1;
+}
+
+.rectangle {
+	background: url(../Content/images/sprite-glasses.png) no-repeat 0 0;
+
+}
+.rectangle-rounded {
+	background: url(../Content/images/sprite-glasses.png) no-repeat -229px -10px; 
+
+}
+.butterfly {
+	background: url(../Content/images/sprite-glasses.png) no-repeat -228px -86px;
+
+}
+.eye {
+	background: url(../Content/images/sprite-glasses.png) no-repeat -228px -156px;
+
+}
+
+.oval {
+	background: url(../content/images/sprite-glasses.png) no-repeat 0 0;
+
+}
+.rounded-aviator {
+	background: url(../Content/images/sprite-glasses.png) no-repeat 0px -10px; 
+
+}
+.rounded-203 {
+	background: url(../Content/images/sprite-glasses.png) no-repeat 0px -86px;
+
+}
+.rounded-202 {
+	background: url(../content/images/sprite-glasses.png) no-repeat 0px -156px;
+
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,153 @@
+﻿@{
+    PageData["title"] = "BCeen : Retail Invoices";
+}
+
+
+<div class="panel panel-default" ng-controller="CustomersController">
+
+    <div class="panel-heading">
+        <h1>Customers (All)</h1>
+
+        <div class="panel-options">
+            <a href="" data-toggle="panel">
+                <span class="collapse-icon">&ndash;</span>
+                <span class="expand-icon">+</span>
+            </a>
+
+        </div>
+        <div class="col-sm-2 pagination"><small><span>No. Items: ({{filteredList.length}} )</span></small></div>
+        <div class="col-sm-7"><at-pagination at-config="config" at-list="filteredList"></at-pagination></div>
+        <div class="col-sm-3 pagination">
+            <input type="text" ng-change="updateFilteredList()" ng-model="query" placeholder="Filter Results" class="form-control form-focus-purple ng-valid ng-dirty" />
+
+        </div>
+
+    </div>
+
+  
+    <div class="panel-body">
+        <form id="Customers" name="CustomerForm" novalidate>
+            <table at-table at-list="filteredList" at-config="config" class="table table-striped table-condensed table-bordered dataTable" at-paginated>
+                <thead></thead>
+                <tbody>
+                    <tr class="panel-group" at-row="separator" ng-click="setNotes(item)" ng-class="{selected: item.Customer_ID == selectedId }" ng-hover="">
+                        <td at-title="Customer ID" at-attribute="Customer_ID" at-implicit></td>
+                        <td at-sortable at-attribute="Customer_Name" at-implicit at-title="Name"></td>
+                        <td at-implicit at-attribute="Street1" at-title="Street Address"></td>
+                        <td at-implicit at-attribute="Street2" at-title="Unit / Suite"></td>
+                        <td at-sortable at-implicit at-attribute="City" at-title="City"></td>
+                        <td at-implicit at-attribute="Phone" at-title="Phone"></td>
+                        <td at-implicit at-attribute="Email" at-title="Email"></td>
+                        <td at-implicit at-attribute="Fax" at-title="Fax"></td>
+                       
+                    </tr>
+
+
+                </tbody>
+            </table>
+        </form>
+
+    </div>
+
+<!-- only display this if there is a result.-->
+<div class="NotesForm" ng-show="showNotes==true" ng-class="{open: showNotes == true}">
+ 
+<!-- User Post form and Timeline -->
+<div class="col-sm-8 col-md-8 col-xs-12 notesform">
+    <div class="row col-xs-12 col-md-10 col-lg-12">
+                    <button class="btn-close" ng-click="showNotes=false">     
+                    </button>
+        </div>
+    <div class="col-xs-12" style="margin-top:100px;">
+        <h1>Enter a Note for {{CustomerID}}</h1>
+    </div>
+    <form novalidate="novalidate" class="profile-post-form" method="post" role="form">
+        <div class="">
+            <textarea ng-model="newnote.Note1" id="Note" tabindex="0" placeholder="Enter your notes for today."  ng-blur="setDateNow()" class="form-control input-unstyled input-lg autogrow" style="overflow: hidden; margin-bottom:5px; word-wrap: break-word; height: 84px;" autofocus></textarea>
+
+            <span>Category: </span>
+            <label>
+                <div class="cbr-input"><input tabindex="1" type="radio" ng-model="newnote.Category" value="Visit" class="cbr cbr-done" ng-init="notes.Category='Visit'">Visit</div>
+
+            </label>
+
+            <label>
+                <div class="cbr-input"><input tabindex="2" type="radio" ng-model="newnote.Category" value="Phone" class="cbr cbr-done">Phone</div>
+
+            </label>
+
+            <label>
+                <div class="cbr-input"><input tabindex="3" type="radio" ng-model="newnote.Category" value="Email" class="cbr cbr-done">Email / Text</div>
+
+            </label>
+
+
+
+            <!--            <div class="input-group col-md-5">
+                <input type="text" ng-model="notes.km" placeholder="Mileage (km)" class="form-control" />
+                <p><small>Mileage (km) if applicable.</small></p>
+            </div>
+                -->
+            <div class="input-group col-md-7">
+
+                <div class="form-group">
+                   <div class="input-group input-group-sm input-group-minimal">
+                       <span class="input-group-addon" ng-click="setDateNow()"> <i class="fa-clock-o"></i> </span>
+                       <span class="input-group-addon" ng-click="setDatePrevious()"> <i class="fa-arrow-circle-left"></i></span>
+                       <input type="text" ng-model="newnote.Date" class="form-control">
+                     
+                    </div>
+                    <p><small>If you manually enter the date, please format like:  <strong>MM/DD/YYYY 24:59:00</strong></small></p>
+                </div>
+
+
+                  
+            </div>
+
+
+            <div class="notes-header col-md-12">
+                <button id="add-note" ng-click="submitNote(newnote)" class="btn btn-success btn-lg"><i class="fa-pencil"></i>&nbsp;<span>New Note</span></button>
+            </div>
+
+        </div>
+        <!--
+          <input type="text" ng-model="notes.User_ID" placeholder="userid"/>
+          <input type="text" ng-model="notes.Customer_ID" placeholder="customer.Customer_ID"/>
+          <input type="text" ng-model="notes.Category" placeholder="Visit"/>
+        -->
+    </form>
+</div>
+    <div class="col-xs-12 col-sm-4 col-md-4 notes">
+        <h3>Customer's Notes</h3>
+        <table at-table at-list="GotNotes" at-config="configNotes" class="table table-striped table-condensed table-bordered dataTable">
+            <tr class="blockquote blockquote-success">
+                <td at-implicit at-attribute="Date" class="small col-md-4"></td>
+                <td at-implicit at-attribute="Note" class="small col-md-8"></td>
+            </tr>
+        </table>
+    </div>
+    </div>
+    </div>
+<script type="text/ng-template" id="SuccessModal">
+    <div class="modal-header"><h4 class="modal-title">Notes</h4></div>
+    <div class="modal-body">
+        <p>Your note has been added.</p>
+    </div>
+    <div class="modal-footer"><button type="button" class="btn btn-info" ng-click="currentModal.dismiss();">Continue</button></div>
+</script>
+
+
+
+<div class="xe-progress">
+    <span data-fill-easing="true" data-fill-duration="2" data-fill-property="width" data-fill-unit="%" data-fill-to="100" data-fill-from="0" class="xe-progress-fill" style="width: 86%;"></span>
+</div>
+
+<div data-duration="2" data-suffix="%" data-to="100" data-from="0" data-count=".num" xe-counter="" class="xe-widget xe-counter">
+    <div class="xe-icon">
+        <i class="linecons-cloud"></i>
+    </div>
+    <div class="xe-label">
+        <strong class="num">100%</strong>
+        <span>Loading Results</span>
+    </div>
+</div>

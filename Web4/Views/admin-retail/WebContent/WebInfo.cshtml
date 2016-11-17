@@ -1,0 +1,45 @@
+﻿@{
+    Layout = null;
+}
+@{
+    PageData["title"] = "Optik KR : Manage Reviews";
+}
+
+<div class="panel panel-default" ng-controller="WebInfoController as webinfo">
+    <div class="panel-heading">
+
+        <div class="col-sm-1 pagination"><a ng-href='#here' ng-click="createWebInfo()" class="btn btn-primary btn-default">ADD NEW</a></div>
+        <div class="col-sm-2 pagination"><span>No. Items: ({{webinfo.length}} )</span></div>
+        <div class="col-sm-3"><at-pagination at-config="config" at-list="filteredList"></at-pagination></div>
+        <div class="col-sm-3 pagination"><input type="text" class="form-control no-right-border form-focus-purple" ng-model="search" placeholder="Filter Results" /></div>
+
+        <div class="panel-options">
+            <a href="" data-toggle="panel">
+                <span class="collapse-icon">&ndash;</span>
+                <span class="expand-icon">+</span>
+            </a>
+            <a href="" data-toggle="remove">
+                &times;
+            </a>
+        </div>
+    </div>
+
+    <div class="panel-body">
+
+        <table at-table at-list="filteredList" at-config="config" class="table table-striped table-bordered dataTable" at-paginated>
+            <thead></thead>
+            <tbody>
+                <tr>
+                    <td><a ng-click="editInfo(item.ID)" class="btn btn-secondary btn-sm btn-icon icon-left">edit</a></td>
+                    <td><a ng-click="deleteInfo(item.ID)" class="btn btn-danger btn-sm btn-icon icon-left">delete</a></td>
+                    <td at-sortable at-initial-sorting="asc" at-implicit at-attribute="TextTitle"></td>
+                    <td at-sortable at-implicit at-attribute="Text"></td>
+                    <td at-implicit at-attribute="TextTitle_Fr"></td>
+                    <td at-sortable at-implicit at-attribute="TextTitle_Fr"></td>
+                    <td at-sortable at-implicit at-attribute="DisplayLocation"></td>
+                    
+                    
+                </tr>
+            </tbody>
+        </table>
+</div>

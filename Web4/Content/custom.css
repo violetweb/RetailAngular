@@ -1,0 +1,226 @@
+/**
+ *
+ * Apply your custom CSS here
+ *
+*/
+
+body {	
+}
+
+a {
+    cursor:pointer;
+}
+
+i {
+    cursor: pointer;
+}
+
+/*************************************
+	*	ICONS : GLASSES
+	*	Images delivered via sprite.
+*=====================================*/
+
+#Invoice .panel-body table {
+    width:425px;
+    position:relative;
+    height:auto;
+}
+#Invoice .panel-body table td{
+    border: 1px solid #efefef;
+    
+    background-color: #f0f0f0;
+    color: #666;
+    text-align: center;
+    border-top: 5px solid #fff;
+    border: 1px solid #fff;
+}
+
+.shape {
+	width:216px;
+	height:72px;
+	display:block;
+	margin:20px 0;
+	opacity:.5;
+	 -webkit-transition: opacity .5s ease-out-in;
+  	-moz-transition: opacity .5s ease-out-in;
+  	-ms-transition: opacity .5s ease-in-out;
+  	-o-transition: opacity .5s ease-in-out;
+  	transition: opacity .5s ease-in-out;
+}
+
+.shape:hover, .shape:active{
+  zoom: 1;
+  filter: alpha(opacity=1);
+  opacity: 1;
+}
+
+.rectangle {
+	background: url(../Content/images/sprite-glasses.png) no-repeat 0 0;
+
+}
+.rectangle-rounded {
+	background: url(../content/images/sprite-glasses.png) no-repeat -229px -10px; 
+
+}
+.butterfly {
+	background: url(../Content/images/sprite-glasses.png) no-repeat -228px -86px;
+
+}
+.eye {
+	background: url(../Content/images/sprite-glasses.png) no-repeat -228px -156px;
+
+}
+
+.oval {
+	background: url(../Content/images/sprite-glasses.png) no-repeat 0 0;
+
+}
+.rounded-aviator {
+	background: url(../Content/images/sprite-glasses.png) no-repeat 0px -10px; 
+
+}
+.rounded-203 {
+	background: url(../Content/images/sprite-glasses.png) no-repeat 0px -86px;
+
+}
+.rounded-202 {
+	background: url(../Content/images/sprite-glasses.png) no-repeat 0px -156px;
+
+}
+
+.separator {
+    border-bottom:2px solid #808080;
+    margin-bottom:20px;
+}
+
+
+.easemein-enter {
+    	-webkit-transition: 1s linear all; /* Chrome */
+    	transition: 1s linear all;
+    	opacity: 0;
+}
+
+    .easemein-enter.easemein-enter-active {
+        opacity: 1;
+    }
+    .sidebar-menu .main-menu ul{
+        width:auto;
+        max-width:240px;
+    }
+
+
+table tr.selected {
+   opacity:1;
+   color:#000;
+   position:relative;
+}
+table tr.selected td {
+    border-top: 2px solid #eee;
+    border-bottom: 2px solid #eee;
+  
+    
+}
+table tr td input {
+    width: 100%;
+}
+ul.dropdown-searchable {
+  margin-top: 2px;
+  padding-left: 10px;
+  border: 1px solid #333;
+  line-height: 25px;
+  background-color: #efefef;
+  cursor: pointer;
+  width: 193px;
+  position: relative;
+  top: -1px;
+  left: -1px;
+}
+
+.notes {
+   overflow-y: scroll;
+   max-height: 800px;
+}
+
+.notes .table.table-condensed > thead > tr > td,  
+.notes .table.table-condensed > tfoot > tr > td, 
+.notes .table.table-condensed > tbody > tr > th,
+{
+    padding:15px 20px;
+}
+.NotesForm{
+  
+  
+    top:0;
+    left:0;
+    transition: ease-in; 
+    width:100%;
+    height:100%;
+    background: rgba(153, 204, 51, 0.9) none repeat scroll 0 0;
+    z-index:100;
+    position: absolute;
+}
+.NotesForm .notesform {
+    padding:20px 40px;
+    
+}
+.NotesForm .open {
+    opacity: 1;
+    transition: opacity 0.5s ease 0s;
+    visibility: visible;
+}
+.btn-close {
+    background: rgba(0, 0, 0, 0) url("../images/cross.png") no-repeat scroll center center;
+    border: medium none;
+    color: transparent;
+    height: 80px;
+    outline: medium none;
+    overflow: hidden;
+    position: absolute;
+    right: 20px;
+    text-indent: 200%;
+    top: 20px;
+    width: 80px;
+    z-index: 100;
+}
+
+.sales-buttons i {
+    font-size:34px;
+}
+.sales-buttons .btn {
+    padding:20px;
+}
+.customer-data{
+    background: #fff none repeat scroll 0 0;
+    margin-bottom: 30px;
+        color: #b1b1b1;
+    font-size: 12px;
+    position: relative;
+}
+.customer-data .xe-widget.xe-counter .xe-icon i {
+    width:80px;
+    height:80px;
+    line-height: 80px;
+    border:3px solid #eee;
+    margin-bottom:0;
+   
+}
+
+.customer-data .profile-env .user-info-sidebar .user-friends-count{
+    margin: 0 auto;
+}
+
+thead > i {
+    font-size:30px;
+}
+.pricing {
+        border-bottom: 3px solid rgba(153, 204, 51, 0.9);
+    color: rgba(153, 204, 51, 0.9);
+    padding-bottom: 8px;
+}
+
+.modal-dialog {
+    width: 90%;
+}
+.form-control{
+    padding:5px!important;
+}

@@ -1,0 +1,50 @@
+﻿<page-title ng-if="layoutOptions.pageTitles" title="Calendar" description="Events management calendar"></page-title>
+<section class="calendar-env">
+    <div class="col-sm-9 calendar-right">
+        <div class="calendar-main">
+            <div id="calendar"></div>
+        </div>
+    </div>
+     <div class="col-sm-3 calendar-left">
+        <div class="calendar-sidebar">
+            <form method="post" id="add_event_form" ng-submit="addSalesItem()">
+                <input type="text" class="form-control" ng-model="usereventitem.eventname" placeholder="Add new event..." />
+            </form>
+
+            <br />
+
+            <ul class="list-unstyled calendar-list" id="events-list">
+                <li class="list-header">Drag to the calendar</li>
+              
+                <li><hr/></li>
+                <li ng-repeat="item in calendarDraggable" draggable dropafter="true">
+                    <a href="" data-event-class="event-color-purple" data-event-id="{{item.ID}}" data-customer-id="{{item.Customer_ID}}" data-customer-name="{{item.Customer_Name}}">
+                        <span class="badge badge-purple upper">{{item.Customer_ID}} : {{item.Customer_Name}}</span>
+                    </a>
+                </li>
+                <li><hr/></li>
+                <li draggable>
+                    <a href="" data-event-class="event-color-red">
+                        <span class="badge badge-red upper">Breakfast Meal</span>
+                    </a>
+                </li>
+                <li draggable>
+                    <a href="" data-event-class="event-color-blue">
+                        <span class="badge badge-blue upper">Lunch Meal</span>
+                    </a>
+                </li>
+                <li draggable>
+                    <a href="" data-event-class="event-color-info">
+                        <span class="badge badge-info upper">Travel Time</span>
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+<script src="Content/js/fullcalendar/moment.min.js"></script>
+<script src="Content/js/fullcalendar/fullcalendar.js"></script>

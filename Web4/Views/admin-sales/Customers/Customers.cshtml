@@ -1,0 +1,75 @@
+﻿@{
+    PageData["title"] = "Optik KR : Customers";
+}
+
+<div class="panel panel-default"  ng-controller="CustomerInfoController">
+
+    
+
+    <div class="panel-heading">
+        <div class="col-xs-9">
+
+            <h1>{{CustomerName}}</h1>
+        </div>
+        <div class="panel-options">
+            <a href="" data-toggle="panel">
+                <span class="collapse-icon">&ndash;</span>
+                <span class="expand-icon">+</span>
+            </a>
+            <a href="" data-toggle="remove">
+                &times;
+            </a>
+        </div>
+        <div class="col-xs-12">
+            <div class='wrap'>
+                <input ng-change='lookupClient()' ng-model='query' ng-hide="selected" placeholder='Lookup Client ID' type='text' xng-focus='cleared'>
+                <input ng-model="selected" type="text" class="JustifyCenter regular" ng-show="selected"/>
+                <ul class='{{state}} list-group' ng-show='query' style="position:absolute; z-index:20;">
+                    <li ng-click='selectItem(customer)' ng-repeat='customer in customers | filter: query' class="list-group-item">
+                        {{customer.Customer_ID}} || {{customer.Customer_Name}}
+                    </li>
+                </ul>
+
+                   
+            </div>
+        </div>
+     </div>
+    
+
+    
+
+    <div class="panel panel-default">
+       
+            <div class="panel-heading">Current Month : {{currentMonth}}</div>
+            <div class="panel-body">
+             
+                <div class="col-sx-12 col-md-9">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Qty</th>
+                                <th>$ Amt</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="salesitem in salesitems">
+
+                                <td>{{salesitem.Product_Type_Name}}</td>
+                                <td>{{salesitem.Qty}}</td>
+                                <td>{{salesitem.MonthTotal}}</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="chart-item-env col-xs-12 col-md-3">
+                    <div id="doughnut-1" style="width: 200px;"></div>
+                </div>
+            </div>
+
+        </div>
+   
+
+   </div>
